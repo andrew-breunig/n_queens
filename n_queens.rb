@@ -10,7 +10,7 @@ def solve_queens_problem
 
   @permutations.each do |perm|
     place_queen_in_column(perm, 0)
-    @board.queens = []
+    @board.clear
   end
 end
 
@@ -44,7 +44,7 @@ def add_board_to_solutions(board)
 end
 
 @verbose = false
-@board_size = 9
+@board_size = 4
 
 @solution_boards = []
 @board = Board.new(size: @board_size)

@@ -47,6 +47,10 @@ class Board
     queen.row = row
     return queen
   end
+
+  def clear
+    @queens = []
+  end
   
   
   def display
