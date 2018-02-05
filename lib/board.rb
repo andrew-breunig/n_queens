@@ -48,15 +48,6 @@ class Board
     return queen
   end
   
-  def remove_queen(column, row)
-    queen = find_queen(column, row)
-    if queen
-      queen.column = nil
-      queen.row = nil
-      @queens.delete(queen)
-    end
-  end
-  
   
   def display
     puts
@@ -74,8 +65,6 @@ class Board
   
   
   def safe_position?(column,row)
-    return false unless safe_column?(column)
-    return false unless safe_row?(row)
     return false unless safe_diagonal?(column, row)
     return true
   end
@@ -89,14 +78,6 @@ class Board
     
     def contents_at(column, row)
       find_queen(column, row) || @@blank
-    end
-    
-    def safe_column?(column)
-      queens.none? {|q| q.column == column}
-    end
-  
-    def safe_row?(row)
-      queens.none? {|q| q.row == row}
     end
   
     def safe_diagonal?(column, row)

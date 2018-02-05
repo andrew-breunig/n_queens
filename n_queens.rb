@@ -4,51 +4,50 @@ require_relative('lib/board')
 require_relative('lib/queen')
 
 def solve_queens_problem
-  place_queen_in_column(0)
+  @board_array = (0..@board.rows-1).to_a
+
+  @permutations = @board_array.permutation.to_a
+
+  @permutations.each do |perm|
+    place_queen_in_column(perm, 0)
+    @board.queens = []
+  end
 end
 
-def place_queen_in_column(column)
+def place_queen_in_column(perm, column)
   puts "\nTrying Queen ##{column+1}" if @verbose
 
-  @board.rows.times do |row|
-    if @board.safe_position?(column, row)
-      
-      puts "+ Placing Queen ##{column+1} at #{column}, #{row}" if @verbose
-      @board.place_queen(column, row)
-      @board.display if @verbose
-      
-      if column == @board.ending_column
-        puts "! Solution Found\n" if @verbose
-        
-        add_board_to_solutions(@board)
+  row = perm[column]
 
-      else
-        place_queen_in_column(column+1)
-      end
-
-      puts "- Removing Queen ##{column+1}" if @verbose
-      @board.remove_queen(column, row)
+  if @board.safe_position?(column, row)
+    puts "+ Placing Queen ##{column+1} at #{column}, #{row}" if @verbose
+    @board.place_queen(column, row)
+    @board.display if @verbose
+    
+    if column == @board.ending_column
+      puts "! Solution Found\n" if @verbose
       
+      add_board_to_solutions(@board)
     else
-      puts "x Conflict at #{column}, #{row}" if @verbose
-      next
+      place_queen_in_column(perm, column+1)
     end
+  else
+    puts "x Conflict at #{column}, #{row}, trying next permutation..." if @verbose
   end
-
-  puts "! No solution for Queen ##{column+1}, backtracking..." if @verbose
-  
 end
 
 def add_board_to_solutions(board)
   # Store a copy of the board and the queens on it
-  solution_board = Board.new
+  solution_board = Board.new(size: @board_size)
   solution_board.queens = board.queens.map(&:dup)
   @solution_boards << solution_board
 end
 
 @verbose = false
+@board_size = 9
+
 @solution_boards = []
-@board = Board.new(size: 8)
+@board = Board.new(size: @board_size)
 
 #  4:      2 solutions
 #  5:     10 solutions
