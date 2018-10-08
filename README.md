@@ -1,3 +1,5 @@
+TEST
+
 # N Queens
 
 ## Description
