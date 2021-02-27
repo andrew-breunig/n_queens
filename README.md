@@ -14,7 +14,7 @@ These methods do not eliminate diagonal threats like those depicted in the first
 
 `(row(queen1) - row(queen2)).abs == (col(queen1) - col(queen2)).abs`
 
-So the complete set of solutions for a board of size _N_ consists of all _N_-permutations mapped onto the rows and columns of the board which do not exhibit the diagonal threat condition above.
+So the complete set of solutions for a board of size _N_ x _N_ consists of all _N_-permutation-based placements for which no pair of queens exhibits the diagonal threat condition above.
 
 ## Examples
 
