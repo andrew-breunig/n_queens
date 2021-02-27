@@ -8,7 +8,15 @@ This puzzle was one of the first programming problems to capture my imagination.
 
 I've created a computationally ineffecient but conceptually interesting solution based on a fun math trick: for an _N_ x _N_ chessboard, every [combination](https://en.wikipedia.org/wiki/Combination) of whole numbers 1 through _N_ represents a set of safe placements along an edge of the board.
 
-For example:
+By using [permutations](https://en.wikipedia.org/wiki/Permutation) instead of combinations, we impose the additional constraint of unique order of elements, eliminating the possibility of duplicate solutions.
+
+These methods do not eliminate diagonal threats like those depicted in the first example below. Diagonal threats are characterized by the following condition:
+
+`(row(queen1) - row(queen2)).abs == (col(queen1) - col(queen2)).abs`
+
+So the complete set of solutions for a board of size _N_ consists of all _N_-permutations mapped onto the rows and columns of the board which do not exhibit the diagonal threat condition above.
+
+## Examples
 
 * 4 x 4 chessboard
 * _combination a:_ `[1,2,3,4]`
@@ -21,12 +29,7 @@ For example:
 |---Q|
 ======
 ```
-
-By using [permutations](https://en.wikipedia.org/wiki/Permutation) instead of combinations, we impose the additional constraint of unique order of elements, eliminating the possibility of duplicate solutions.
-
-These methods do not eliminate diagonal threats like those depicted in the example above. Diagonal threats are characterized by the following condition:
-
-`(row(queen1) - row(queen2)).abs == (col(queen1) - col(queen2)).abs` 
+_A combination-based placement which satisfies row/column safety but not diagonal safety requirements_
 
 * 4 x 4 chessboard
 * _combination b:_ `[3,1,4,2]`
@@ -39,6 +42,7 @@ These methods do not eliminate diagonal threats like those depicted in the examp
 |--Q-|
 ======
 ```
+_A pemutation-based placement which represents a valid solution to the puzzle_
 
 ## Usage
 
