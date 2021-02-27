@@ -19,23 +19,28 @@ So the complete set of solutions for a board of size _N_ x _N_ consists of all _
 ## Examples
 
 **Example 1**
-* 4 x 4 chessboard
-* _combination a:_ `[1,2,3,4]`
-* _column 1: row 1, column 2: row 2, column 3: row 3, column 4: row 4_
 ```
 ======
-|Q---|
-|-Q--|
-|--Q-|
-|---Q|
+|QQ--|
+|QQ--|
+|----|
+|----|
 ======
 ```
-_A combination-based placement which satisfies row/column safety but not diagonal safety requirements_
+_A placement which does not satisfy row, column, or diagonal safety requirements_
 
 **Example 2**
-* 4 x 4 chessboard
-* _combination b:_ `[3,1,4,2]`
-* _column 1: row 3, column 2: row 1, column 3: row 4, column 4, row 2_
+```
+======
+|Q---|
+|-Q--|
+|--Q-|
+|---Q|
+======
+```
+_A placement which satisfies row and column safety but not diagonal safety requirements_
+
+**Example 3**
 ```
 ======
 |-Q--|
@@ -44,7 +49,7 @@ _A combination-based placement which satisfies row/column safety but not diagona
 |--Q-|
 ======
 ```
-_A pemutation-based placement which represents a valid solution to the puzzle_
+_A placement which represents a valid solution to the puzzle_
 
 ## Usage
 
